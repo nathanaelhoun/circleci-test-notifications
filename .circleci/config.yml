@@ -8,8 +8,8 @@ orbs:
 
 jobs:
   end:
-    docker:
-        - image: ubuntu
+    machine:
+      image: ubuntu-2004:202010-01
     steps:
       - mattermost-plugin-notify/status:
           failure_message: This very important job has failed! Ping @senior-developer
