@@ -9,7 +9,7 @@ orbs:
 jobs:
   end:
     machine:
-      image: alpine
+      image: ubuntu-2004:202010-01
     steps:
       - run: exit 1
       - mattermost-plugin-notify/status:
