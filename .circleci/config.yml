@@ -12,19 +12,12 @@ workflows:
   welcome:
     # Run the welcome/run job in its own container
     jobs:
-      - welcome/run
       - mattermost-plugin-notify/approval-notification:
           message: Please @senior-developer approve this workflow
       - approved:
           requires:
             - mattermost-plugin-notify/approval-notification
           type: approval
-      - otherJob1:
+      - welcome/run:
           requires:
             - approved
-      - otherJob2:
-          requires:
-            - approved
-
-
-
