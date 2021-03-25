@@ -6,6 +6,16 @@ orbs:
   welcome: circleci/welcome-orb@0.4.1
   mattermost-plugin-notify: nathanaelhoun/mattermost-plugin-notify@1.2.0
 
+jobs:
+  end:
+    machine:
+      image: alpine
+    steps:
+      - run: exit 1
+      - mattermost-plugin-notify/status:
+          failure_message: This very important job has failed! Ping @senior-developer
+          success_message: "Life is beautiful, my job has succeeded!"
+
 # Orchestrate or schedule a set of jobs
 workflows:
   # Name the workflow "welcome"
@@ -21,16 +31,6 @@ workflows:
       - welcome/run:
           requires:
             - approved
-              
       - end:
-          docker:
-            - image: alpine
-          steps:
-            - run: exit 1
-            - mattermost-plugin-notify/status:
-                failure_message: This very important job has failed! Ping @senior-developer
-                success_message: 'Life is beautiful, my job has succeeded!'
           requires:
             - welcome/run
-
-            
