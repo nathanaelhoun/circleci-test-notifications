@@ -4,6 +4,8 @@ version: 2.1
 orbs:
   # Declare a dependency on the welcome-orb
   welcome: circleci/welcome-orb@0.4.1
+  mattermost-plugin-notify: nathanaelhoun/mattermost-plugin-notify@1.2.0
+
 # Orchestrate or schedule a set of jobs
 workflows:
   # Name the workflow "welcome"
@@ -11,3 +13,18 @@ workflows:
     # Run the welcome/run job in its own container
     jobs:
       - welcome/run
+      - mattermost-plugin-notify/approval-notification:
+          message: Please @senior-developer approve this workflow
+      - approved:
+          requires:
+            - mattermost-plugin-notify/approval-notification
+          type: approval
+      - otherJob1:
+          requires:
+            - approved
+      - otherJob2:
+          requires:
+            - approved
+
+
+
