@@ -11,7 +11,6 @@ jobs:
     machine:
       image: ubuntu-2004:202010-01
     steps:
-      - run: exit 1
       - mattermost-plugin-notify/status:
           failure_message: This very important job has failed! Ping @senior-developer
           success_message: "Life is beautiful, my job has succeeded!"
