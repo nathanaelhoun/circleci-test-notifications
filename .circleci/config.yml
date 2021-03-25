@@ -9,7 +9,7 @@ orbs:
 jobs:
   end:
     docker:
-        - image: alpine
+        - image: ubuntu
     steps:
       - mattermost-plugin-notify/status:
           failure_message: This very important job has failed! Ping @senior-developer
