@@ -21,7 +21,10 @@ workflows:
       - welcome/run:
           requires:
             - approved
+              
       - end:
+          docker:
+            - image: alpine
           steps:
             - run: exit 1
             - mattermost-plugin-notify/status:
